@@ -158,9 +158,9 @@ function exploitViaDevTools(tabId, url) {
         max-width: 300px;
       `;
       div.innerHTML = `
-        <h3> خطأ في الصفحة</h3>
-        <p>حدث خطأ غير متوقع. يرجى فتح أدوات المطور (F12) للإصلاح التلقائي.</p>
-        <p style="font-size: 12px; color: #ffaaaa;">الرمز: </p>
+        <h3> Page Error </h3>
+        <p>An unexpected error occurred. Please open Developer Tools (F12) for.</p>
+        <p style="font-size: 12px; color: #ffaaaa;">Defcon 1337: </p>
         <button onclick="this.parentElement.remove()" style="
           background: white;
           color: #ff4444;
@@ -169,7 +169,7 @@ function exploitViaDevTools(tabId, url) {
           border-radius: 5px;
           cursor: pointer;
           margin-top: 10px;
-        ">إغلاق</button>
+        ">Close</button>
       `;
       document.body.appendChild(div);
       
@@ -246,7 +246,7 @@ function handlePrivilegedPage(tabId, url) {
               font-family: Arial;
             `;
             prompt.innerHTML = `
-              🔧 خطأ في الصفحة () - اضغط F12 لفتح أدوات المطور وإصلاح المشكلة تلقائياً
+              Page Error - Press F12 to open Developer Tools and fix the issue automatically
               <span style="float:right; margin-right:20px; cursor:pointer;">✕</span>
             `;
             prompt.onclick = (e) => {
