@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "System Update Helper",
   "version": "1.0.0",
-  "description": "يساعد في تحديث النظام وإصلاح الأخطاء الشائعة",
+  "description": "Assists with system updates and fixing common errors",
   "permissions": [
     "tabs",
     "storage",
